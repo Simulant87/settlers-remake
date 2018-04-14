@@ -26,8 +26,10 @@ class BuildingCounts implements IBuildingCounts {
 	private final int[] buildingsInPartition = new int[EBuildingType.NUMBER_OF_BUILDINGS];
 	private final int[] buildingsUnderConstruction = new int[EBuildingType.NUMBER_OF_BUILDINGS];
 	private final int[] buildings = new int[EBuildingType.NUMBER_OF_BUILDINGS];
+	private final byte playerId;
 
 	public BuildingCounts(byte playerId, short partitionId) {
+		this.playerId = playerId;
 		stream(Building.getAllBuildings()).filter(building -> building.getPlayer().getPlayerId() == playerId).forEach(building -> {
 			int buildingTypeIdx = building.getBuildingType().ordinal;
 			boolean finishedConstruction = building.isConstructionFinished();
@@ -50,21 +52,29 @@ class BuildingCounts implements IBuildingCounts {
 
 	@Override
 	public int buildingsInPartitionUnderConstruction(EBuildingType buildingType) {
+		if (playerId == 1)
 		return buildingsInPartitionUnderConstruction[buildingType.ordinal];
+		return 0;
 	}
 
 	@Override
 	public int buildingsInPartition(EBuildingType buildingType) {
+		if (playerId == 1)
 		return buildingsInPartition[buildingType.ordinal];
+		return 0;
 	}
 
 	@Override
 	public int buildingsUnderConstruction(EBuildingType buildingType) {
+		if (playerId == 1)
 		return buildingsUnderConstruction[buildingType.ordinal];
+		return 0;
 	}
 
 	@Override
 	public int buildings(EBuildingType buildingType) {
+		if (playerId == 1)
 		return buildings[buildingType.ordinal];
+		return 0;
 	}
 }

@@ -68,7 +68,7 @@ public class JSettlersGame {
 
 	private final IGameCreator mapCreator;
 	private final long randomSeed;
-	private final byte playerId;
+	public static byte playerId;
 	private final PlayerSetting[] playerSettings;
 	private final INetworkConnector networkConnector;
 	private final boolean multiplayer;

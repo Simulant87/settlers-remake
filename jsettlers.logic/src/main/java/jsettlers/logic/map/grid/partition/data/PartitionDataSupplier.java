@@ -18,6 +18,7 @@ import jsettlers.common.map.partition.IBuildingCounts;
 import jsettlers.common.map.partition.IPartitionData;
 import jsettlers.common.map.partition.IPartitionSettings;
 import jsettlers.common.material.EMaterialType;
+import jsettlers.main.JSettlersGame;
 
 public final class PartitionDataSupplier implements IPartitionData {
 
@@ -40,7 +41,10 @@ public final class PartitionDataSupplier implements IPartitionData {
 
 	@Override
 	public int getAmountOf(EMaterialType materialType) {
-		return materialCounts.getAmountOf(materialType);
+		if (playerId == JSettlersGame.playerId) {
+			return materialCounts.getAmountOf(materialType);
+		}
+		return 0;
 	}
 
 	@Override
